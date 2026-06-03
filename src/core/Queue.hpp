@@ -1,0 +1,1 @@
+// fila FIFO abstrata para controle de espera
