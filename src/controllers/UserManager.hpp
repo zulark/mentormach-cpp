@@ -10,10 +10,14 @@ class GerenciadorUsuarios {
 private:
     ListaEncadeada<Aluno>  alunos;
     ListaEncadeada<Mentor> mentores;
+    int proximoIdAluno;
+    int proximoIdMentor;
 
 public:
-    void cadastrarAluno(int id, std::string nome, std::string area, int nivel);
-    void cadastrarMentor(int id, std::string nome, std::string area, float avaliacao, int nivel);
+    GerenciadorUsuarios() : proximoIdAluno(1), proximoIdMentor(1) {}
+
+    int cadastrarAluno(std::string nome, std::string area, int nivel);
+    int cadastrarMentor(std::string nome, std::string area, float avaliacao, int nivel);
 
     Aluno*  buscarAluno(int id);
     Mentor* buscarMentor(int id);

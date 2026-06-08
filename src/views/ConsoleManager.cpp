@@ -4,7 +4,7 @@
 
 void GerenciadorConsole::exibirCabecalho(const std::string& titulo) {
     std::cout << "\n╔══════════════════════════════════╗\n";
-    std::cout << "║ " << std::setw(31) << std::left << titulo << "║\n";
+    std::cout << "║ " << std::setw(31) << std::left << titulo << "  ║\n";
     std::cout << "╚══════════════════════════════════╝\n\n";
 }
 
@@ -77,10 +77,28 @@ void GerenciadorConsole::exibirRelatorios(Mentor** ranking, int tamanho, Pilha<M
     std::cin.get();
 }
 
-void GerenciadorConsole::capturarDadosAluno(int& id, std::string& nome, std::string& area, int& nivel) {
-    std::cout << "ID: ";
-    std::cin >> id;
-    std::cin.ignore(10000, '\n');
+void GerenciadorConsole::exibirListaAlunos(ListaEncadeada<Aluno>& alunos) {
+    exibirCabecalho("ALUNOS REGISTRADOS");
+    
+    int n = alunos.getSize();
+    if (n > 0) {
+        Aluno** arr = alunos.paraArray(n);
+        std::cout << "ID   Nome                    Area                Nivel\n";
+        std::cout << "──────────────────────────────────────────────────────\n";
+        for (int i = 0; i < n; i++) {
+            std::cout << std::setw(3) << arr[i]->getId() << "  "
+                      << std::setw(20) << std::left << arr[i]->getNome() << "  "
+                      << std::setw(15) << std::left << arr[i]->getAreaInteresse() << "  "
+                      << arr[i]->getNivelAprendizado() << "\n";
+        }
+        delete[] arr;
+    } else {
+        std::cout << "Nenhum aluno registrado.\n";
+    }
+    std::cout << "\n";
+}
+
+void GerenciadorConsole::capturarDadosAluno(std::string& nome, std::string& area, int& nivel) {
     std::cout << "Nome: ";
     std::getline(std::cin, nome);
     std::cout << "Area de interesse: ";
@@ -90,10 +108,7 @@ void GerenciadorConsole::capturarDadosAluno(int& id, std::string& nome, std::str
     std::cin.ignore(10000, '\n');
 }
 
-void GerenciadorConsole::capturarDadosMentor(int& id, std::string& nome, std::string& area, float& avaliacao, int& nivel) {
-    std::cout << "ID: ";
-    std::cin >> id;
-    std::cin.ignore(10000, '\n');
+void GerenciadorConsole::capturarDadosMentor(std::string& nome, std::string& area, float& avaliacao, int& nivel) {
     std::cout << "Nome: ";
     std::getline(std::cin, nome);
     std::cout << "Area de expertise: ";

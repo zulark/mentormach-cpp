@@ -1,13 +1,17 @@
 #include "UserManager.hpp"
 
-void GerenciadorUsuarios::cadastrarAluno(int id, std::string nome, std::string area, int nivel) {
+int GerenciadorUsuarios::cadastrarAluno(std::string nome, std::string area, int nivel) {
+    int id = proximoIdAluno++;
     Aluno* aluno = new Aluno(id, nome, area, nivel);
     alunos.inserir(aluno);
+    return id;
 }
 
-void GerenciadorUsuarios::cadastrarMentor(int id, std::string nome, std::string area, float avaliacao, int nivel) {
+int GerenciadorUsuarios::cadastrarMentor(std::string nome, std::string area, float avaliacao, int nivel) {
+    int id = proximoIdMentor++;
     Mentor* mentor = new Mentor(id, nome, area, avaliacao, nivel);
     mentores.inserir(mentor);
+    return id;
 }
 
 Aluno* GerenciadorUsuarios::buscarAluno(int id) {

@@ -16,23 +16,28 @@ int main() {
 
         switch (opcao) {
             case 1: {
-                int id, nivel;
                 std::string nome, area;
-                console.capturarDadosAluno(id, nome, area, nivel);
-                usuario.cadastrarAluno(id, nome, area, nivel);
-                std::cout << "Aluno cadastrado com sucesso!\n";
+                int nivel;
+                console.capturarDadosAluno(nome, area, nivel);
+                int idAluno = usuario.cadastrarAluno(nome, area, nivel);
+                std::cout << "Aluno cadastrado com sucesso! ID: " << idAluno << "\n";
+                std::cout << "Pressione ENTER para continuar...";
+                std::cin.get();
                 break;
             }
             case 2: {
-                int id, nivel;
-                float avaliacao;
                 std::string nome, area;
-                console.capturarDadosMentor(id, nome, area, avaliacao, nivel);
-                usuario.cadastrarMentor(id, nome, area, avaliacao, nivel);
-                std::cout << "Mentor cadastrado com sucesso!\n";
+                float avaliacao;
+                int nivel;
+                console.capturarDadosMentor(nome, area, avaliacao, nivel);
+                int idMentor = usuario.cadastrarMentor(nome, area, avaliacao, nivel);
+                std::cout << "Mentor cadastrado com sucesso! ID: " << idMentor << "\n";
+                std::cout << "Pressione ENTER para continuar...";
+                std::cin.get();
                 break;
             }
             case 3: {
+                console.exibirListaAlunos(usuario.obterListaAlunos());
                 int id = console.capturarId();
                 Aluno* aluno = usuario.buscarAluno(id);
                 if (aluno) {
@@ -41,6 +46,8 @@ int main() {
                 } else {
                     std::cout << "Aluno nao encontrado!\n";
                 }
+                std::cout << "Pressione ENTER para continuar...";
+                std::cin.get();
                 break;
             }
             case 4: {
@@ -57,6 +64,8 @@ int main() {
             }
             case 6: {
                 rank.exibirEstatisticas(matching.obterHistorico());
+                std::cout << "Pressione ENTER para continuar...";
+                std::cin.get();
                 break;
             }
             case 7: {
