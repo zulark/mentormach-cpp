@@ -1,1 +1,0 @@
-//  Pilha LIFO abstrata para histórico de ações/sessões
